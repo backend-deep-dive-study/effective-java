@@ -10,7 +10,7 @@
 - SOLID 원칙에 위배되는 사례가 많음 (단일 책임 원칙, 개방폐쇄 원칙 등)
 
 ### 싱글턴을 만드는 방식
-- 생성자를 private으로 설
+- 생성자를 private으로 설정
 - public static 멤버 하나를 통해 인스턴스에 접근
 1) public static + final
    ```
