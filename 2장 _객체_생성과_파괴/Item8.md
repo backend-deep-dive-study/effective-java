@@ -1,4 +1,4 @@
-# finailizer와 cleaner 사용을 피하라
+# finalizer와 cleaner 사용을 피하라
 
 ### 자바의 객체 소멸자
 
