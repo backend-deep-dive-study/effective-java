@@ -54,8 +54,7 @@ class Service {
 ## 접근 제한자
 
 ### 종류
-> 멤버（필드, 메서드, 중첩 클래스, 중첩 인터페이스）에 부여할 수 있는 접근 수 
-준
+> 멤버（필드, 메서드, 중첩 클래스, 중첩 인터페이스）에 부여할 수 있는 접근 수준
 - private : 멤버를 선언한 톱레벨 클래스에서 접근 가능, 멤버에만 사용 가능, 비공개 API
 - package-private : 멤버가 소속된 패키지 안의 모든 클래스에 접근 가능, 비공개 API
 한 클래스에서만 사용하는 클래스는 private static으로 중첩 클래스를 사용)
@@ -82,9 +81,36 @@ class Service {
 
 - 클래스에서 public static final 배열 필드를 두거나 이 필드를 반환하는 접근자 메서드를 제공해서는 안된다. 
 
-public : 모든 클래스에서 접근 할 수 있다.static :  클래스의 인스턴스화 없이 사용할 수 있다.final : 한 번 초기화되면 그 값이 변경되지 않는다. 즉, 해당 필드는 상수로 취급된다. (상수 : 고정된 값)
+public : 모든 클래스에서 접근 할 수 있다. <br>
+static :  클래스의 인스턴스화 없이 사용할 수 있다. <br>
+final : 한 번 초기화되면 그 값이 변경되지 않는다. 즉, 해당 필드는 상수로 취급된다. (상수 : 고정된 값)
 
 아래의 클래스는 public static final 배열 필드를 사용하고, 해당 필드를 반환하는 접근자 메서드를 제공한다. 보안 허점이 숨어있는 코드이다.
+```
+// 불변성 보장X, 캡슐화 원칙 위배
+public class Constants {
+    public static final String[] COLORS = {"Red", "Green", "Blue"};
+
+    public static String[] getColors() {
+        return COLORS;
+    }
+}
+```
+
+해결 방법
+```
+public class Constants {
+    private static final String[] COLORS = {"Red", "Green", "Blue"};
+
+    // getColors 메서드: COLORS 배열을 변경할 수 없는 리스트 형태로 반환
+    public static List<String> getColors() {
+        // Arrays.asList 메서드를 사용하여 COLORS 배열을 리스트로 변환
+        // 이 메서드는 고정 크기의 리스트를 반환하므로 리스트의 크기는 변경될 수 없음
+        // unmodifiableList 메서드를 사용하여 리스트를 변경할 수 없는 리스트로 래핑
+        return Collections.unmodifiableList(Arrays.asList(COLORS));
+    }
+}
+```
 
 
 ## 모듈
