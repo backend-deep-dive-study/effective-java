@@ -52,9 +52,10 @@ public class GoodParallelExample {
     }
 }
 ```
-- 1000만개 테스트 결과
+- 1000만개 테스트 결과 <br>
 ![image](https://github.com/user-attachments/assets/50dbd30a-9e3a-4132-a7ae-fde428f2b5b7)
-- 1억개 테스트 결과
+- 1억개 테스트 결과 <br>
+![image](https://github.com/user-attachments/assets/00c5b6af-6bd2-45f3-b5e6-da3727e489da)
 
 
 ## 위 자료구조들의 특징
